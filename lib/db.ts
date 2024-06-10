@@ -54,3 +54,7 @@ export async function getUsers(
 export async function deleteUserById(id: number) {
   await db.delete(users).where(eq(users.id, id));
 }
+
+export async function updateUserRoleById(id: number, newRole: string) {
+  await db.update(users).set({ role: newRole }).where(eq(users.id, id));
+}

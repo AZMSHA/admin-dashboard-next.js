@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { SelectUser } from '@/lib/db';
-import { deleteUser } from './actions';
+import { deleteUser, updateUser } from './actions';
 import { useRouter } from 'next/navigation';
 
 export function UsersTable({
@@ -61,22 +61,43 @@ export function UsersTable({
 
 function UserRow({ user }: { user: SelectUser }) {
   const userId = user.id;
+  const userRole = user.role;
   const deleteUserWithId = deleteUser.bind(null, userId);
+  const updateUserWithId = () => {
+    console.log(user.name, userRole, userId);
+    let newRole: string;
+    if (userRole === 'User') {
+      newRole = 'Admin';
+    } else {
+      newRole = 'User';
+    }
 
+    return () => {
+      updateUser(userId, newRole);
+    };
+  };
   return (
     <TableRow>
       <TableCell className="font-medium">{user.name}</TableCell>
       <TableCell className="hidden md:table-cell">{user.email}</TableCell>
       <TableCell>{user.username}</TableCell>
       <TableCell>{user.role}</TableCell>
-      <TableCell>
+      <TableCell className="flex justify-end gap-2">
         <Button
-          className="w-full"
+          className=""
           size="sm"
           variant="outline"
           formAction={deleteUserWithId}
         >
           Delete
+        </Button>
+        <Button
+          className=""
+          size="sm"
+          variant="outline"
+          formAction={updateUserWithId()}
+        >
+          Update Role
         </Button>
       </TableCell>
     </TableRow>

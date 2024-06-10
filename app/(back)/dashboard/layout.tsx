@@ -1,4 +1,4 @@
-import './globals.css';
+import '../../globals.css';
 
 import Link from 'next/link';
 import { Analytics } from '@vercel/analytics/react';
@@ -7,9 +7,9 @@ import { User } from './user';
 import { NavItem } from './nav-item';
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
+  title: 'Dashboard',
   description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, and Prettier.'
+    'The Admin Dashboard, Configure the site and its components from here.'
 };
 
 export default function RootLayout({
@@ -26,25 +26,21 @@ export default function RootLayout({
               <div className="flex h-[60px] items-center border-b px-5">
                 <Link
                   className="flex items-center gap-2 font-semibold"
-                  href="/"
+                  href="/dashboard"
                 >
                   <Logo />
-                  <span className="">ACME</span>
+                  <span className="">DASHBOARD</span>
                 </Link>
               </div>
               <div className="flex-1 overflow-auto py-2">
                 <nav className="grid items-start px-4 text-sm font-medium">
-                  <NavItem href="/">
+                  <NavItem href="/dashboard/users">
                     <UsersIcon className="h-4 w-4" />
                     Users
                   </NavItem>
-                  <NavItem href="/settings">
+                  <NavItem href="/dashboard/settings">
                     <SettingsIcon className="h-4 w-4" />
                     Settings
-                  </NavItem>
-                  <NavItem href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs">
-                    <VercelLogo className="h-4 w-4" />
-                    Deploy
                   </NavItem>
                 </nav>
               </div>
