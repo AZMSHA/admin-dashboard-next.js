@@ -35,6 +35,7 @@ export function UsersTable({
               <TableHead className="max-w-[150px]">Name</TableHead>
               <TableHead className="hidden md:table-cell">Email</TableHead>
               <TableHead className="hidden md:table-cell">Username</TableHead>
+              <TableHead className="hidden md:table-cell">Role</TableHead>
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
@@ -67,13 +68,13 @@ function UserRow({ user }: { user: SelectUser }) {
       <TableCell className="font-medium">{user.name}</TableCell>
       <TableCell className="hidden md:table-cell">{user.email}</TableCell>
       <TableCell>{user.username}</TableCell>
+      <TableCell>{user.role}</TableCell>
       <TableCell>
         <Button
           className="w-full"
           size="sm"
           variant="outline"
           formAction={deleteUserWithId}
-          disabled
         >
           Delete
         </Button>
